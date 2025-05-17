@@ -17,7 +17,7 @@ public class PasswordManagerApp {
         });
     }
 
-    // دالة التشفير
+    // Encription function
     public static String hashPassword(String password) {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-256");
@@ -107,7 +107,7 @@ class MainScreen extends JFrame {
 
         add(inputPanel);
 
-        // حفظ الحساب مع تشفير كلمة المرور
+        // Save account with encripted password
         saveButton.addActionListener(e -> {
             String account = accountField.getText();
             String password = new String(passwordField.getPassword());
@@ -121,13 +121,13 @@ class MainScreen extends JFrame {
             }
         });
 
-        // توليد كلمة مرور عشوائية
+        // generate random password
         generateButton.addActionListener(e -> {
             String generated = generateRandomPassword();
             passwordField.setText(generated);
         });
 
-        // عرض كل الحسابات
+        // Show all accounts 
         showAllButton.addActionListener(e -> {
             StringBuilder result = new StringBuilder("Stored Accounts:\n");
             for (String account : PasswordManagerApp.passwordDatabase.keySet()) {
@@ -136,7 +136,7 @@ class MainScreen extends JFrame {
             JOptionPane.showMessageDialog(this, result.toString());
         });
 
-        // تعديل كلمة المرور
+        // Change password  
         editButton.addActionListener(e -> {
             String accountToEdit = JOptionPane.showInputDialog(this, "Enter the account to edit:");
             if (accountToEdit != null && PasswordManagerApp.passwordDatabase.containsKey(accountToEdit)) {
